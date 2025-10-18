@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import { useAuthStore } from '@/store/auth';
@@ -9,7 +9,7 @@ import { api } from '@/lib/api';
 import { TransactionsResponse, Transaction } from '@/types/chart';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function TransactionsPage() {
+function TransactionsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
@@ -848,5 +848,17 @@ export default function TransactionsPage() {
       )}
 
     </>
+  );
+}
+
+export default function TransactionsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-lime-400"></div>
+      </div>
+    }>
+      <TransactionsContent />
+    </Suspense>
   );
 }
