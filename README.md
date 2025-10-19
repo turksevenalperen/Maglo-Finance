@@ -183,7 +183,7 @@ src/
 
 ## 📊 Case Study Gereksinimleri
 
-### ✅ Temel Gereksinimler (100% Tamamlandı)
+
 
 #### 🔐 Sign In/Sign Up Ekranı
 - ✅ Sol form, sağ görsel düzeni
@@ -209,11 +209,11 @@ src/
 - ✅ Toast notifications
 - ✅ Error Boundary
 
-### ✅ Bonus Özellikler (85% Tamamlandı)
+
 - ✅ Loading spinner (giriş sayfası)
 - ✅ Global state management (Zustand)
 - ✅ Responsive design (mobile hamburger menu)
-- ❌ Tanstack React Query (mevcut API yapısı yeterli)
+
 
 ### 🎯 Değerlendirme Kriterleri
 - ✅ **Pixel-perfect tasarım**: Figma'ya uygun kodlama
@@ -274,7 +274,7 @@ src/
 ### Test Hesapları
 ```
 Email: test@example.com
-Password: Test123!
+Password: Asdasd06
 
 veya Google OAuth ile giriş yapabilirsiniz
 ```
@@ -328,29 +328,3 @@ vercel
 - **CSRF Protection**: NextAuth otomatik koruma
 - **Input Sanitization**: Zod validation ile güvenlik
 - **XSS Prevention**: React'ın otomatik escape'i
-
-### Gelecek Geliştirmeler
-- [ ] Tanstack React Query entegrasyonu
-- [ ] Unit testler (Jest + Testing Library)
-- [ ] E2E testler (Playwright)
-- [ ] PWA özellikleri
-- [ ] Dark mode toggle
-- [ ] Çoklu dil desteği
-
-## 📞 İletişim
-
-**Proje**: Maglo Finansal Takip Platformu  
-**Case Study**: Mid/Senior React Developer  
-**Geliştirme Süresi**: 7 gün  
-**Teknoloji Stack**: Next.js + TypeScript + Tailwind CSS
-
----
-
-> 💡 **Not**: Bu proje tamamen kurgusal bir case study için geliştirilmiştir. Gerçek bir ürün için kullanılmayacaktır.
-
-**🎯 Case Study Başarı Oranı: %93**
-
-- Core Requirements: %95 ✅
-- Bonus Features: %85 ✅
-- Code Quality: %95 ✅
-- User Experience: %90 ✅

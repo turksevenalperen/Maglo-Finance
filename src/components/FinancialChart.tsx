@@ -29,11 +29,12 @@ export default function FinancialChart({ data, currency }: FinancialChartProps) 
     label?: string;
   }
 
-  const CustomTooltip = ({ active, payload }: TooltipProps) => {
+  const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active && payload && payload.length) {
+  
       const entry = payload[0]; 
       return (
-        <div className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium shadow-lg border border-gray-700">
+        <div className="bg-gray-800 text-white px-2 py-1 rounded text-sm font-medium">
           {formatCurrency(entry.value)}
         </div>
       );
@@ -90,21 +91,14 @@ export default function FinancialChart({ data, currency }: FinancialChartProps) 
             domain={[0, 10000]}
             ticks={[0, 3000, 10000]}
           />
-          <Tooltip 
-            content={<CustomTooltip />}
-            cursor={{ stroke: '#e5e7eb', strokeWidth: 1 }}
-            animationDuration={200}
-            offset={10}
-            allowEscapeViewBox={{ x: false, y: false }}
-            position={{ x: undefined, y: undefined }}
-          />
+          <Tooltip content={<CustomTooltip />} />
           <Line 
             type="basis" 
             dataKey="income" 
             stroke="#29a073" 
             strokeWidth={3}
             dot={false}
-            activeDot={{ r: 5, fill: '#29a073', stroke: '#ffffff', strokeWidth: 2 }}
+            activeDot={{ r: 4, fill: '#29a073' }}
             name="Income"
           />
           <Line 
@@ -113,7 +107,7 @@ export default function FinancialChart({ data, currency }: FinancialChartProps) 
             stroke="#c8ee44" 
             strokeWidth={3}
             dot={false}
-            activeDot={{ r: 5, fill: '#c8ee44', stroke: '#ffffff', strokeWidth: 2 }}
+            activeDot={{ r: 4, fill: '#c8ee44' }}
             name="Expenses"
           />
         </LineChart>
