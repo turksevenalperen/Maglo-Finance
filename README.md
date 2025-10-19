@@ -73,7 +73,7 @@ NEXT_PUBLIC_API_BASE_URL=https://case.nodelabs.dev/api
 - **Detaylı İşlem Listesi**: Filtreleme ve arama özelliği
 - **Modal Detaylar**: İşlem detaylarını popup'ta görüntüleme
 - **Kategori Filtreleri**: Gelir, gider, fatura kategorileri
-- **Tarih Aralığı**: 7 gün, 30 gün, 90 gün filtreleri
+- **Tarih Aralığı**: 7 gün, 30 gün
 
 ### 📄 Fatura Modülü
 - **Fatura Durumları**: Ödendi, beklemede, gecikmiş, taslak
@@ -120,7 +120,7 @@ src/
 - **Tailwind CSS**: Utility-first CSS framework
 - **Responsive Design**: Mobile-first yaklaşım
 - **Custom Components**: Tutarlı tasarım sistemi
-- **Dark/Light Mode**: Otomatik tema desteği
+
 
 ## 📱 Sayfalar
 
@@ -305,26 +305,5 @@ GOOGLE_CLIENT_SECRET=prod-google-client-secret
 NEXT_PUBLIC_API_BASE_URL=https://case.nodelabs.dev/api
 ```
 
-### Vercel Deployment
-```bash
-# Vercel CLI ile deploy
-npm i -g vercel
-vercel
 
-# GitHub entegrasyonu ile otomatik deploy
-# Repository'yi Vercel'e bağla
-```
 
-## 👨‍💻 Geliştirici Notları
-
-### Performans Optimizasyonları
-- **Code Splitting**: Next.js otomatik route-based splitting
-- **Image Optimization**: next/image kullanımı
-- **Bundle Analysis**: Bundle analyzer ile optimizasyon
-- **Memoization**: React.memo ve useMemo kullanımı
-
-### Güvenlik
-- **Environment Variables**: Hassas bilgiler .env dosyasında
-- **CSRF Protection**: NextAuth otomatik koruma
-- **Input Sanitization**: Zod validation ile güvenlik
-- **XSS Prevention**: React'ın otomatik escape'i
