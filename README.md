@@ -7,6 +7,8 @@
 
 > **Mid/Senior React Developer Case Study** için geliştirilmiş modern finans platformu. Kullanıcıların finansal hareketlerini, toplam bakiyelerini ve işletme sermayelerini kolayca takip edebileceği masaüstü öncelikli uygulama.
 
+🔗 **Canlı Demo:** [https://maglo-finance-6fwu.vercel.app/auth](https://maglo-finance-6fwu.vercel.app/auth)
+
 ## 📋 İçindekiler
 
 - [🚀 Hızlı Başlangıç](#-hızlı-başlangıç)
