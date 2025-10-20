@@ -549,7 +549,7 @@ function TransactionsContent() {
         <div className="max-w-7xl mx-auto">
           {isLoading ? (
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="bg-gray-300 rounded-lg h-24 animate-pulse"></div>
                 ))}
@@ -557,9 +557,9 @@ function TransactionsContent() {
               <div className="bg-gray-300 rounded-lg h-96 animate-pulse"></div>
             </div>
           ) : transactionsData ? (
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -622,8 +622,9 @@ function TransactionsContent() {
               </div>
 
             
-              <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Filters */}
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow border border-gray-200">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
@@ -677,13 +678,55 @@ function TransactionsContent() {
 
            
               <div className="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <div className="px-4 sm:px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                   <h3 className="text-lg font-semibold text-gray-900">
                     Transactions ({filteredSummary.count})
                   </h3>
                 </div>
                 
-                <div className="overflow-x-auto">
+                {/* Mobile Card View */}
+                <div className="block sm:hidden">
+                  {filteredTransactions.map((transaction) => (
+                    <div key={transaction.id} className="border-b border-gray-200 p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-3">
+                          <img 
+                            className="h-10 w-10 rounded-full"
+                            src={transaction.image}
+                            alt={transaction.business}
+                          />
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {transaction.name}
+                            </div>
+                            <div className="text-xs text-gray-500">
+                              {transaction.business}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className={`text-sm font-medium ${transaction.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {transaction.amount > 0 ? '+' : '-'}{formatCurrency(transaction.amount, transaction.currency)}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {formatDate(transaction.date)}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                          {transaction.type}
+                        </span>
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                          {transaction.status}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Desktop Table View */}
+                <div className="hidden sm:block overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
@@ -751,11 +794,11 @@ function TransactionsContent() {
                   
                   {filteredTransactions.length === 0 && (
                     <div className="text-center py-12">
-                      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         💳
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">No transactions found</h3>
-                      <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+                      <p className="text-gray-600 text-sm">Try adjusting your search or filter criteria</p>
                     </div>
                   )}
                 </div>

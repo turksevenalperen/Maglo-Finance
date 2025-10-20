@@ -371,7 +371,7 @@ export default function InvoicesPage() {
           {isLoading ? (
             <div className="space-y-6">
              
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="bg-gray-300 rounded-lg h-24 animate-pulse"></div>
                 ))}
@@ -379,9 +379,9 @@ export default function InvoicesPage() {
               <div className="bg-gray-300 rounded-lg h-96 animate-pulse"></div>
             </div>
           ) : invoiceData ? (
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
           
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -456,7 +456,8 @@ export default function InvoicesPage() {
               </div>
 
               
-              <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+              {/* Filters */}
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow border border-gray-200">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                   <div className="flex flex-wrap gap-2">
                     {['all', 'paid', 'pending', 'overdue', 'draft'].map((status) => (
@@ -493,13 +494,55 @@ export default function InvoicesPage() {
 
              
               <div className="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
-                <div className="px-6 py-4 border-b border-gray-200">
+                <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-900">
                     Invoices ({filteredInvoices.length})
                   </h3>
                 </div>
                 
-                <div className="overflow-x-auto">
+                {/* Mobile Card View */}
+                <div className="block sm:hidden">
+                  {filteredInvoices.map((invoice) => (
+                    <div key={invoice.id} className="border-b border-gray-200 p-4 hover:bg-gray-50">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center space-x-3">
+                          <img 
+                            className="h-10 w-10 rounded-full"
+                            src={invoice.clientLogo}
+                            alt={invoice.clientName}
+                          />
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {invoice.invoiceNumber}
+                            </div>
+                            <div className="text-xs text-gray-500">
+                              {invoice.clientName}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-medium text-gray-900">
+                            {formatCurrency(invoice.amount, invoice.currency)}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {formatDate(invoice.dueDate)}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(invoice.status)}`}>
+                          {invoice.status}
+                        </span>
+                        <button className="text-xs text-blue-600 hover:text-blue-800">
+                          View Details
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Desktop Table View */}
+                <div className="hidden sm:block overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
@@ -582,11 +625,11 @@ export default function InvoicesPage() {
                   
                   {filteredInvoices.length === 0 && (
                     <div className="text-center py-12">
-                      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
                         📄
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">No invoices found</h3>
-                      <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+                      <p className="text-gray-600 text-sm">Try adjusting your search or filter criteria</p>
                     </div>
                   )}
                 </div>

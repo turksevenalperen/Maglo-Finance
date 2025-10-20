@@ -113,36 +113,37 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col lg:flex-row">
       <Toaster position="top-right" />
       
-      <div className="flex-1 flex flex-col px-4 sm:px-8 bg-white">
+      <div className="flex-1 flex flex-col px-4 sm:px-6 lg:px-8 bg-white">
      
-        <div style={{paddingTop: '40px', paddingLeft: '220px', paddingBottom: '16px'}}>
+        <div className="pt-6 sm:pt-8 lg:pt-10 pb-4 lg:pl-20 xl:pl-56">
           <Image 
             src="/images/maglo-logo.png" 
             alt="Maglo Logo" 
             width={122}
             height={30}
+            className="mx-auto lg:mx-0"
           />
         </div>
         
        
-        <div className="flex-1 flex items-center justify-center" style={{paddingLeft: '135px'}}>
-          <div className="w-full space-y-6" style={{maxWidth: '404px', minHeight: '445px'}}>
+        <div className="flex-1 flex items-center justify-center lg:pl-10 xl:pl-36">
+          <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl space-y-6 min-h-0"style={{minHeight: '445px'}}>
 
        
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
               {isSignUp ? 'Create new account' : 'Sign In'}
             </h2>
            
-            <p className="text-gray-600" style={{marginBottom: '25px'}}>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 lg:mb-8">
               {isSignUp ? 'Create your account to get started' : 'Welcome back! Please enter your details'}
             </p>
 
             {isSignUp ? (
-              <form onSubmit={signUpForm.handleSubmit(onSignUp)} style={{gap: '25px'}} className="flex flex-col">
+              <form onSubmit={signUpForm.handleSubmit(onSignUp)} className="flex flex-col space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
                     Name
@@ -241,7 +242,7 @@ export default function AuthPage() {
                 </button>
               </form>
             ) : (
-              <form onSubmit={signInForm.handleSubmit(onSignIn)} style={{gap: '25px'}} className="flex flex-col">
+              <form onSubmit={signInForm.handleSubmit(onSignIn)} className="flex flex-col space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email
@@ -332,14 +333,14 @@ export default function AuthPage() {
               </button>
               
            
-              <div className="mt-4 flex justify-center">
+              {/* Toggle decoration - responsive position */}
+              <div className="mt-4 flex justify-center lg:justify-start lg:ml-40 xl:ml-44">
                 <Image 
                   src="/images/toggle-decoration.png" 
                   alt="Decoration" 
                   width={48}
                   height={24}
                   className="w-12 h-auto"
-                  style={{marginLeft: '170px'}}
                 />
               </div>
             </div>
@@ -350,7 +351,8 @@ export default function AuthPage() {
       </div>
 
     
-      <div className="flex-1 bg-gray-100 flex items-center justify-center relative overflow-hidden">
+      {/* Right side - Image (hidden on mobile, visible on large screens) */}
+      <div className="hidden lg:flex lg:flex-1 bg-gray-100 items-center justify-center relative overflow-hidden">
         <Image 
           src="/images/hand-clock.png" 
           alt="Hand holding clock - Time is money" 
